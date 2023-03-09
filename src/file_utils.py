@@ -1,4 +1,5 @@
 import os
+import re
 
 
 USER_ROOT_DIR = os.path.expanduser('~')
@@ -12,11 +13,8 @@ def create_dirpath(dirpath: str) -> None:
 
 
 def sanitize_filename(filename: str) -> str:
-    for ch in ['\\','/','<','>',':','\"','|','?','*']:
-        if ch in filename:
-            filename.replace(ch, '')
-    return filename
-
+    return re.sub(r'[\\/<>:\"|?*]', '', filename)
+    
 
 def resolve_duplicate_filenames(dir: str, filename: str) -> str:
     i = 1
