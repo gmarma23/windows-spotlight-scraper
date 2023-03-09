@@ -4,7 +4,6 @@ import os
 
 class WebScraperCore():
     # Constants
-    APP_DOWNLOADS_DIR_NAME = 'Windows Spotlight'
     USER_AGENT = 'Mozilla/5.0 (Windows NT 10.0; Win64; x64; rv:110.0) Gecko/20100101 Firefox/110.0'
     HEADERS = {'User-Agent': USER_AGENT}
     MAX_RETRIES = 10
@@ -21,8 +20,9 @@ class WebScraperCore():
         self.session = requests.Session()
         self.session.mount('https://', requests.adapters.HTTPAdapter(max_retries=retries))
 
-        # Set default downloads root directory
+        # Set default property values
         self.downloads_root_dir = file_utils.USER_DOWNLOADS_DIR 
+        self.app_name = ''
 
  
     def get_html_webpage_content(self, url: str) -> bytes:
@@ -36,7 +36,7 @@ class WebScraperCore():
         file_utils.sanitize_filename(filename)
         if filename == '':
             raise ValueError('Filename argument can not be an empty string!')
-        dirpath = os.path.join(self.downloads_root_dir, self.APP_DOWNLOADS_DIR_NAME)
+        dirpath = os.path.join(self.downloads_root_dir, self.app_name)
         
         if replace_existing:
             file_utils.resolve_duplicate_filenames(dirpath, filename)
@@ -50,7 +50,4 @@ class WebScraperCore():
 
             with open(filepath, 'wb') as file:
                 file.write(response.content)
-
-
-    def set_downloads_root_dir(self, dirpath: str) -> None:
-        self.downloads_root_dir = dirpath
+                
