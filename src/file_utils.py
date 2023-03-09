@@ -11,15 +11,17 @@ def create_dirpath(dirpath: str) -> None:
         os.makedirs(dirpath)
 
 
-def sanitize_filename(filename: str) -> None:
+def sanitize_filename(filename: str) -> str:
     for ch in ['\\','/','<','>',':','\"','|','?','*']:
         if ch in filename:
             filename.replace(ch, '')
+    return filename
 
 
-def resolve_duplicate_filenames(dir: str, filename: str):
+def resolve_duplicate_filenames(dir: str, filename: str) -> str:
     i = 1
     name, extension = os.path.splitext(filename)
     while os.path.exists(os.path.join(dir, filename)):
         filename = f'{name}({i}){extension}'
         i += 1
+    return filename
