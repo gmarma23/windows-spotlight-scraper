@@ -3,6 +3,7 @@ from bs4 import BeautifulSoup
 from tqdm import tqdm
 import file_utils
 
+
 class WindowsSpotlightScraper():
     APP_NAME = 'Windows Spotlight Scraper'
     BASE_URL = 'https://windows10spotlight.com'
@@ -23,7 +24,7 @@ class WindowsSpotlightScraper():
             remaining_count = self.IMAGES_PER_COLLECTION_PAGE * (total_collection_pages - 1) + \
                               self.get_collection_last_page_images_count()
             
-        with tqdm(total=remaining_count) as pbar:
+        with tqdm(total=remaining_count, desc='Downloading images') as pbar:
             for page_index in range(1, total_collection_pages + 1):
                 remaining_count = self.download_page_images(page_index, pbar, remaining_count)
                 if remaining_count == 0:
