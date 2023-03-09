@@ -6,3 +6,5 @@ In a terminal run `main.py` and use option `--count` (or `-c`) to specify the nu
 If option `--count` (or `-c`) is not specified then all available wallpapers will be scraped.
 
 Example: `main.py -c 100` will scrape the 100 most recent wallpapers.
+
+         `main.py` will scrape all the available wallpapers.
