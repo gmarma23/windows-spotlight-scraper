@@ -1,1 +1,1 @@
-# WindowsSpotlightScraper
+# Windows Spotlight Scraper
