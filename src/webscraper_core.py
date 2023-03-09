@@ -33,13 +33,14 @@ class WebScraperCore():
         
 
     def download_file(self, url: str, filename: str, replace_existing: bool = False) -> None:
-        file_utils.sanitize_filename(filename)
+        filename = file_utils.sanitize_filename(filename)
         if filename == '':
             raise ValueError('Filename argument can not be an empty string!')
         dirpath = os.path.join(self.downloads_root_dir, self.app_name)
         
-        if replace_existing:
-            file_utils.resolve_duplicate_filenames(dirpath, filename)
+        if not replace_existing:
+            filename = file_utils.resolve_duplicate_filenames(dirpath, filename)
+            print(filename)
 
         with self.session.get(url, headers=self.HEADERS) as response:
             # Raise HTTPError, if one occured
@@ -50,4 +51,3 @@ class WebScraperCore():
 
             with open(filepath, 'wb') as file:
                 file.write(response.content)
-                
