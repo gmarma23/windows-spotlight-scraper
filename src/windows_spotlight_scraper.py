@@ -55,10 +55,11 @@ class WindowsSpotlightScraper():
     
     def download_image(self, image_page_url: str) -> None:
         html_soup = self.parse_HTML(image_page_url)
-        img_tag_content = html_soup.find('img')
+        img_tag_content = html_soup.find('img') 
         image_url = img_tag_content['srcset'].split(',')[-1].split(' ')[1] 
-        image_name = f'{img_tag_content["title"]}.{image_url.split(".")[-1]}'
-        self.webscraper_core.download_file(image_url, image_name, True)
+        image_name = html_soup.find('h1').text
+        image_fullname = f'{image_name}.{image_url.split(".")[-1]}'
+        self.webscraper_core.download_file(image_url, image_fullname, True)
     
 
     def get_total_collection_pages_count(self) -> int:

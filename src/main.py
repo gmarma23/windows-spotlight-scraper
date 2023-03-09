@@ -1,4 +1,4 @@
-from win_spotlight_scraper import WindowsSpotlightScraper
+from windows_spotlight_scraper import WindowsSpotlightScraper
 import argparse
 
 
