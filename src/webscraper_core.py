@@ -40,7 +40,6 @@ class WebScraperCore():
         
         if not replace_existing:
             filename = file_utils.resolve_duplicate_filenames(dirpath, filename)
-            print(filename)
 
         with self.session.get(url, headers=self.HEADERS) as response:
             # Raise HTTPError, if one occured
