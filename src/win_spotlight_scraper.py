@@ -19,10 +19,11 @@ class WindowsSpotlightScraper():
 
     def download_images(self, remaining_count: int = -1) -> None:
         total_collection_pages = self.get_total_collection_pages_count()
-
-        if remaining_count < 0:
-            remaining_count = self.IMAGES_PER_COLLECTION_PAGE * (total_collection_pages - 1) + \
+        total_images = self.IMAGES_PER_COLLECTION_PAGE * (total_collection_pages - 1) + \
                               self.get_collection_last_page_images_count()
+
+        if remaining_count <= 0 or remaining_count > total_images:
+            remaining_count = total_images
             
         with tqdm(total=remaining_count, desc='Downloading images') as pbar:
             for page_index in range(1, total_collection_pages + 1):
