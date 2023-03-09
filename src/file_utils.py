@@ -16,6 +16,7 @@ def sanitize_filename(filename: str) -> None:
         if ch in filename:
             filename.replace(ch, '')
 
+
 def resolve_duplicate_filenames(dir: str, filename: str):
     i = 1
     name, extension = os.path.splitext(filename)
