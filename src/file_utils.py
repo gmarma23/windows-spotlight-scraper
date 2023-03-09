@@ -15,4 +15,10 @@ def sanitize_filename(filename: str) -> None:
     for ch in ['\\','/','<','>',':','\"','|','?','*']:
         if ch in filename:
             filename.replace(ch, '')
-            
+
+def resolve_duplicate_filenames(dir: str, filename: str):
+    i = 1
+    name, extension = os.path.splitext(filename)
+    while os.path.exists(os.path.join(dir, filename)):
+        filename = f'{name}({i}){extension}'
+        i += 1
