@@ -9,7 +9,7 @@ def parse_args():
         action = 'store', 
         type = int, 
         required = False, 
-        help = 'Number of images to scrape'
+        help = 'Number of most recent images to scrape'
     )
     return arg_parser.parse_args()
 
