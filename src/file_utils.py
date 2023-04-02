@@ -13,7 +13,7 @@ def create_dirpath(dirpath: str) -> None:
 
 
 def sanitize_filename(filename: str) -> str:
-    return re.sub(r'[\\/<>:\"|?*]', '', filename)
+    return re.sub(r'[\\/<>:\"|?*\t\n\r]', '', filename)
     
 
 def resolve_duplicate_filenames(dir: str, filename: str) -> str:
