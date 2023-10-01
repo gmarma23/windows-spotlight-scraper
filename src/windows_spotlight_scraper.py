@@ -65,6 +65,7 @@ class WindowsSpotlightScraper():
     def get_total_collection_pages_count(self) -> int:
         html_soup = self.parse_HTML(self.COLLECTION_PAGE_URL.format(1))
         count = html_soup.find_all('a', {'class' : 'page-numbers'})[-2].text
+        count = count.replace(',', '')
         return int(count)
     
 
