@@ -1,5 +1,5 @@
 import requests, requests.adapters
-import file_utils
+import webscrapercore.file_utils as file_utils
 import os
 
 
