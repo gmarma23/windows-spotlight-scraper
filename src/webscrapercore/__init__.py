@@ -1,3 +1,4 @@
+from webscrapercore.filedownloader import FileDownloader
 from webscrapercore.htmlparser import HTMLParser
 from webscrapercore.htmltag import HTMLTag
 from webscrapercore.useragent import UserAgent
