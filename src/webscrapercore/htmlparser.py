@@ -36,7 +36,13 @@ class HTMLParser():
     
 
     def _get_parent_elements(self, parent_element_tag: str, parent_element_classes: list[str]) -> list[Tag]:
-        if parent_element_tag or parent_element_classes:
-            return self._soup.find_all(parent_element_tag, class_=parent_element_classes)
-        else:
+        if not parent_element_tag and not parent_element_classes:
             return [self._soup]
+        
+        args = (parent_element_tag,)
+
+        if parent_element_classes:
+            args += ({'class': parent_element_classes},)
+
+        return self._soup.find_all(*args)
+            
