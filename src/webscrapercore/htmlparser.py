@@ -24,7 +24,7 @@ class HTMLParser():
             args = (target_element_tag,)
 
             if target_element_classes:
-                args += ({'class_': target_element_classes},)
+                args += ({'class': target_element_classes},)
 
             target_elements.extend(list(map(HTMLTag, parent_element.find_all(*args))))
 
