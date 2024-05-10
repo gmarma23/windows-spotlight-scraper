@@ -1,4 +1,4 @@
-from windows_spotlight_scraper import WindowsSpotlightScraper
+from wss import WindowsSpotlightScraper
 import argparse
 
 
@@ -16,14 +16,11 @@ def parse_args():
 
 def main():
     args = parse_args()
-    ws_scraper = WindowsSpotlightScraper()
+    wss = WindowsSpotlightScraper()
 
-    print('')
-    if args.count:
-        ws_scraper.download_images(args.count)
-    else:
-        ws_scraper.download_images()
-    print('')
+    print()
+    wss.download_images(args.count)
+    print()
 
 
 if __name__ == '__main__':
