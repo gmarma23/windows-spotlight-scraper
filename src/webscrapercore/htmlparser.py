@@ -33,8 +33,8 @@ class HTMLParser():
         return self._soup.prettify()
     
 
-    def _get_parent_elements(self, parent_element_tag: str, parent_element_class: str) -> list[Tag]:
-        if parent_element_tag or parent_element_class:
-            return self._soup.find_all(parent_element_tag, class_=parent_element_class)
+    def _get_parent_elements(self, parent_element_tag: str, parent_element_classes: list[str]) -> list[Tag]:
+        if parent_element_tag or parent_element_classes:
+            return self._soup.find_all(parent_element_tag, class_=parent_element_classes)
         else:
             return [self._soup]
