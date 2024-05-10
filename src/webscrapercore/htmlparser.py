@@ -7,24 +7,26 @@ from webscrapercore.htmltag import HTMLTag
 class HTMLParser():
     def __init__(self, content: str):
         self._soup = BeautifulSoup(content, 'html.parser')
-
-
-    def get_elements_by_tag(self, target_element_tag: str, parent_element_tag: str = None, parent_element_class: str = None) -> list[HTMLTag]:
-        parent_elements = self._get_parent_elements(parent_element_tag, parent_element_class)
-
-        target_elements = []
-        for parent_element in parent_elements:
-            target_elements.extend(list(map(HTMLTag, parent_element.find_all(target_element_tag)))) 
-
-        return target_elements    
     
 
-    def get_elements_by_class(self, target_element_class: str, parent_element_tag: str = None, parent_element_class: str = None) -> list[HTMLTag]:
-        parent_elements = self._get_parent_elements(parent_element_tag, parent_element_class)
+    def get_elements(
+            self, 
+            target_element_tag: str = None, 
+            target_element_classes: list[str] = None, 
+            parent_element_tag: str = None, 
+            parent_element_classes: list[str] = None
+        ) -> list[HTMLTag]:
+        parent_elements = self._get_parent_elements(parent_element_tag, parent_element_classes)
 
         target_elements = []
+
         for parent_element in parent_elements:
-            target_elements.extend(list(map(HTMLTag, parent_element.find_all(class_=target_element_class)))) 
+            args = (target_element_tag,)
+
+            if target_element_classes:
+                args += ({'class_': target_element_classes},)
+
+            target_elements.extend(list(map(HTMLTag, parent_element.find_all(*args))))
 
         return target_elements
     
